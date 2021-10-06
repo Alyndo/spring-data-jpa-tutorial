@@ -84,4 +84,20 @@ class StudentRepositoryTest {
 
         System.out.println("student = " + student);
     }
+
+    @Test
+    public void printgetStudentFirstNameByEmailAddress(){
+        String firstName = studentRepository.getStudentFirstNameByEmailAddress(
+                "fiona@gmail.com"
+        );
+        System.out.println("firstName =" + firstName);
+    }
+
+    @Test
+    public void printgetStudentByEmailAddressNative(){
+        Student student = studentRepository.getStudentByEmailAddressNative(
+                "alwyn@gmail.com"
+        );
+        System.out.println("student =" + student);
+    }
 }
