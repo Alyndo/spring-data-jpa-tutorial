@@ -1,6 +1,7 @@
 package com.alwyncodebuffer.springdatajpatutorial.repository;
 
 import com.alwyncodebuffer.springdatajpatutorial.entity.Course;
+import com.alwyncodebuffer.springdatajpatutorial.entity.Student;
 import com.alwyncodebuffer.springdatajpatutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,30 @@ class CourseRepositoryTest {
         List<Course> courses = courseRepository.findAll(sortByTitle).getContent();
 
         System.out.println("courses =" + courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher(){
+
+        Teacher teacher =Teacher.builder()
+                .firstName("Robin")
+                .lastName("Chimba")
+                .build();
+
+        Student student = Student.builder()
+                .firstName("Tawanda")
+                .lastName("Dada")
+                .emailId("dadaz@gmail.com")
+                .build();
+
+        Course course = Course.builder()
+                .title("AI")
+                .credit(12)
+                .teacher(teacher)
+                .build();
+
+        course.addStudents(student);
+
+        courseRepository.save(course);
     }
 }
